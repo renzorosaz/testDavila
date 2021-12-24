@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_davila/listPromotionsScreen.dart';
+import 'package:test_davila/pages/listPromotionsScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
