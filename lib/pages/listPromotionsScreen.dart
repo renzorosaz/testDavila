@@ -4,7 +4,7 @@ import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:test_davila/components/styles.dart';
-import 'package:test_davila/model/detailPostScreen.dart';
+import 'package:test_davila/pages/detailPostScreen.dart';
 import 'package:test_davila/model/postModel.dart';
 
 class ListPromotionsScreen extends StatefulWidget {
@@ -174,12 +174,17 @@ class _ListPromotionsScreenState extends State<ListPromotionsScreen> {
                   ),
                   SizedBox(height: 30),
                   Container(
-                    child: Text('TODAS LAS PROMOCIONES', style: TextStyle(color: Colors.red, fontSize: 18)),
+                    child: Text('TODAS LAS PROMOCIONES',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 18,
+                          decoration: TextDecoration.underline,
+                        )),
                   ),
                   SizedBox(height: 80),
                   Container(
                       height: 600,
-                      width: 330,
+                      width: 300,
                       child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: listPost!.length,
@@ -189,50 +194,50 @@ class _ListPromotionsScreenState extends State<ListPromotionsScreen> {
                                   print(listPost![index]);
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => DetailPostScreen()),
+                                    MaterialPageRoute(builder: (context) => DetailPostScreen(item: listPost![index])),
                                   );
                                 },
                                 child: Card(
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                   child: Column(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(10),
-                                          child: Stack(children: [
-                                            Image.network(
-                                              listPost![index].image.toString(),
-                                              width: 300,
-                                              height: 200,
-                                            ),
-                                            isAuth
-                                                ? Padding(
-                                                    padding: const EdgeInsets.only(top: 150.0),
-                                                    child: ClipRRect(
-                                                        borderRadius: BorderRadius.circular(50),
-                                                        child: Image.network(
-                                                          'https://www.kindacode.com/wp-content/uploads/2020/11/my-dog.jpg',
-                                                          width: 60,
-                                                          height: 60,
-                                                          fit: BoxFit.cover,
-                                                        )),
-                                                  )
-                                                : SizedBox(),
-                                          ]),
-                                        ),
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Stack(children: [
+                                          Image.network(
+                                            listPost![index].image.toString(),
+                                            width: 250,
+                                            height: 200,
+                                          ),
+                                          isAuth
+                                              ? Padding(
+                                                  padding: const EdgeInsets.only(top: 150.0),
+                                                  child: ClipRRect(
+                                                      borderRadius: BorderRadius.circular(50),
+                                                      child: Image.network(
+                                                        'https://www.kindacode.com/wp-content/uploads/2020/11/my-dog.jpg',
+                                                        width: 60,
+                                                        height: 60,
+                                                        fit: BoxFit.cover,
+                                                      )),
+                                                )
+                                              : SizedBox(),
+                                        ]),
                                       ),
                                       SizedBox(height: 10),
                                       Container(
-                                          height: 200,
+                                          height: 230,
                                           width: 300,
                                           child: Column(
                                             children: [
                                               Text(listPost![index].title.toString(), style: Styles.textBlackGoogleFontSize(13)),
-                                              Text(listPost![index].description.toString(),
-                                                  style: TextStyle(fontWeight: FontWeight.normal)),
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Text(listPost![index].description.toString(),
+                                                    style: TextStyle(fontWeight: FontWeight.normal)),
+                                              ),
                                             ],
-                                          ))
+                                          )),
                                     ],
                                   ),
                                 ));
